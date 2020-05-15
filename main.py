@@ -1,5 +1,5 @@
 set SPOTIPY_CLIENT_ID=fe89983598724afcbcd7d562104460e6
-set SPOTIPY_CLIENT_SECRET=519502f8dab34e2cadd147f582c7bf28
+set SPOTIPY_CLIENT_SECRET=6bf650c749c145a581b6d2b73fc5790c
 
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
