@@ -1,3 +1,6 @@
+export SPOTIPY_CLIENT_ID=client_id_here
+export SPOTIPY_CLIENT_SECRET=client_secret_here
+
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 
