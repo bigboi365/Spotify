@@ -11,7 +11,7 @@ offset = 0
 while True:
     response = sp.playlist_tracks(pl_id,
                                   offset=offset,
-                                  fields='items.track.id,total')
+                                  fields='items.track.name,total')
     pprint(response['items'])
     offset = offset + len(response['items'])
     print(offset, "/", response['total'])
