@@ -5,7 +5,7 @@ from pprint import pprint
 
 sp = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials())
 
-pl_id = 'spotify:playlist:5RIbzhG2QqdkaP24iXLnZX'
+pl_id = 'spotify:playlist:37i9dQZEVXbMDoHDwVN2tF'
 offset = 0
 
 while True:
