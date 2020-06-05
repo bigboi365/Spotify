@@ -35,7 +35,12 @@ def execute():
                 print("Description:", dayweather["weather"])
                 print(f"Température max: {dayweather['max_temp']}°C")
                 print(f"Température min: {dayweather['min_temp']}°C")
-        
+"""try:
+        req = requests.get(url)
+    except ConnectionError:
+        print("Echec à l'ouverture de page - Mauvais URL")
+        return
+from requests.exceptions import ConnectionError"""        
     
 
 if __name__ == '__main__':
