@@ -1,21 +1,43 @@
+import weather
+import time
+import argparse
 
-from spotipy.oauth2 import SpotifyClientCredentials
-import spotipy
-from pprint import pprint
+doitQuitter = False
+last = 0
 
-sp = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials())
+def execute():
+    global last
+    pause = 30
+    while doitQuitter == False:
+        if time.time() - last > 20 :
+            last = time.time()
+            URL = "https://www.google.com/search?lr=lang_en&ie=UTF-8&q=weather"
+            
+            parser = argparse.ArgumentParser(description="Quick Script for Extracting Weather data using Google Weather")
+            parser.add_argument("region", nargs="?", help="""Region to get weather for, must be available region.
+                                                Default is your current location determined by your IP Address""", default="")
+            # parse arguments
+            args = parser.parse_args()
+            region = args.region
+            URL += region
+            # get data
+            data = weather.get_weather_data(URL)
+            # print data
+            print("Météo pour:", data["region"])
+            print("Maintenant:", data["dayhour"])
+            print(f"Température maintenant: {data['temp_now']}°C")
+            print("Description:", data['weather_now'])
+            print("Précipitations:", data["precipitation"])
+            print("Humidité:", data["humidity"])
+            print("Vent:", data["wind"])
+            print("Prochains jours:")
+            for dayweather in data["next_days"]:
+                print("="*40, dayweather["name"], "="*40)
+                print("Description:", dayweather["weather"])
+                print(f"Température max: {dayweather['max_temp']}°C")
+                print(f"Température min: {dayweather['min_temp']}°C")
+        
+    
 
-pl_id = 'spotify:playlist:37i9dQZEVXbMDoHDwVN2tF'
-offset = 0
-
-while True:
-    response = sp.playlist_tracks(pl_id,
-                                  offset=offset,
-                                  fields='items.track.name,total')
-    pprint(response['items'])
-    offset = offset + len(response['items'])
-    print(offset, "/", response['total'])
-
-    if len(response['items']) == 0:
-        break
-
+if __name__ == '__main__':
+    execute()
