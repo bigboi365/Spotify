@@ -7,7 +7,6 @@ last = 0
 
 def execute():
     global last
-    pause = 30
     while doitQuitter == False:
         if time.time() - last > 20 :
             last = time.time()
