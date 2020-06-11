@@ -3,7 +3,7 @@ from spotipy.oauth2 import SpotifyClientCredentials
 import spotipy
 from pprint import pprint
 
-def spotify()
+def spotify():
     sp = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials())
 
     pl_id = 'spotify:playlist:37i9dQZEVXbMDoHDwVN2tF'

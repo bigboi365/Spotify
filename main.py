@@ -1,4 +1,5 @@
 import weather
+import spoti
 import time
 import argparse
 import requests
@@ -21,7 +22,8 @@ def execute():
     while doitQuitter == False:
         if time.time() - last > 20 :
             last = time.time()
-            
+
+            spoti.spotify()
             
             parser = argparse.ArgumentParser(description="Quick Script for Extracting Weather data using Google Weather")
             parser.add_argument("region", nargs="?", help="""Region to get weather for, must be available region.
@@ -45,7 +47,7 @@ def execute():
                 print("="*40, dayweather["name"], "="*40)
                 print("Description:", dayweather["weather"])
                 print(f"Température max: {dayweather['max_temp']}°C")
-                print(f"Température min: {dayweather['min_temp']}°C")
+                print(f"Température min: {dayweather['min_temp']}°C")   
 """
 """        
     
