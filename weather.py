@@ -48,13 +48,13 @@ def get_weather_data(url):
     return result
     
 
-if __name__ == "__main__":
+"""if __name__ == "__main__":
     URL = "https://www.google.com/search?lr=lang_en&ie=UTF-8&q=weather"
     import argparse
     parser = argparse.ArgumentParser(description="Quick Script for Extracting Weather data using Google Weather")
-    parser.add_argument("region", nargs="?", help="""Region to get weather for, must be available region.
-                                        Default is your current location determined by your IP Address""", default="")
-    # parse arguments
+    parser.add_argument("region", nargs="?", help="""#Region to get weather for, must be available region.
+                                        #Default is your current location determined by your IP Address""", default="")
+    """# parse arguments
     args = parser.parse_args()
     region = args.region
     URL += region
@@ -73,4 +73,4 @@ if __name__ == "__main__":
         print("="*40, dayweather["name"], "="*40)
         print("Description:", dayweather["weather"])
         print(f"Température max: {dayweather['max_temp']}°C")
-        print(f"Température min: {dayweather['min_temp']}°C")
+        print(f"Température min: {dayweather['min_temp']}°C")"""

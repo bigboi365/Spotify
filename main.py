@@ -1,16 +1,27 @@
 import weather
 import time
 import argparse
+import requests
+from requests.exceptions import ConnectionError
 
 doitQuitter = False
 last = 0
+URL = "https://www.google.com/search?lr=lang_en&ie=UTF-8&q=weather"
 
 def execute():
     global last
+    global URL
+
+    try:
+        req = requests.get(URL)
+    except ConnectionError:
+        print("Echec à l'ouverture de page - Mauvais URL")
+        return
+
     while doitQuitter == False:
         if time.time() - last > 20 :
             last = time.time()
-            URL = "https://www.google.com/search?lr=lang_en&ie=UTF-8&q=weather"
+            
             
             parser = argparse.ArgumentParser(description="Quick Script for Extracting Weather data using Google Weather")
             parser.add_argument("region", nargs="?", help="""Region to get weather for, must be available region.
@@ -35,12 +46,8 @@ def execute():
                 print("Description:", dayweather["weather"])
                 print(f"Température max: {dayweather['max_temp']}°C")
                 print(f"Température min: {dayweather['min_temp']}°C")
-"""try:
-        req = requests.get(url)
-    except ConnectionError:
-        print("Echec à l'ouverture de page - Mauvais URL")
-        return
-from requests.exceptions import ConnectionError"""        
+"""
+"""        
     
 
 if __name__ == '__main__':
