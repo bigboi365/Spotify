@@ -13,7 +13,8 @@ def get_weather_data(url):
     html = session.get(url)
     # create a new soup
     soup = bs(html.text, "html.parser")
-    # store all results on this dictionary
+
+# store all results on this dictionary
     result = {}
     # extract region
     result['region'] = soup.find("div", attrs={"id": "wob_loc"}).text
@@ -22,7 +23,7 @@ def get_weather_data(url):
     # get the day and hour now
     result['dayhour'] = soup.find("div", attrs={"id": "wob_dts"}).text
     # get the actual weather
-    result['weather_now'] = soup.find("span", attrs={"id": "wob_dc"}).text
+    result['weather_now'] = soup.find("span", attrs={"id": "wob_dc"}).text   
     # get the precipitation
     result['precipitation'] = soup.find("span", attrs={"id": "wob_pp"}).text
     # get the % of humidity
@@ -46,31 +47,31 @@ def get_weather_data(url):
     # append to result
     result['next_days'] = next_days
     return result
-    
 
-"""if __name__ == "__main__":
+if __name__ == "__main__":
     URL = "https://www.google.com/search?lr=lang_en&ie=UTF-8&q=weather"
     import argparse
     parser = argparse.ArgumentParser(description="Quick Script for Extracting Weather data using Google Weather")
-    parser.add_argument("region", nargs="?", help="""#Region to get weather for, must be available region.
-                                        #Default is your current location determined by your IP Address""", default="")
-    #parse arguments
-    #args = parser.parse_args()
-    #region = args.region
-    #URL += region
+    parser.add_argument("region", nargs="?", help="""Region to get weather for, must be available region.
+                                        Default is your current location determined by your IP Address""", default="")
+    # parse arguments
+    args = parser.parse_args()
+    region = args.region
+    URL += region
     # get data
-    #data = get_weather_data(URL)
-    # print data
-    #print("Météo pour:", data["region"])
-    #print("Maintenant:", data["dayhour"])
-    #print(f"Température maintenant: {data['temp_now']}°C")
-    #print("Description:", data['weather_now'])
-    #print("Précipitations:", data["precipitation"])
-    #print("Humidité:", data["humidity"])
-    #print("Vent:", data["wind"])
-    #print("Prochains jours:")
-    #for dayweather in data["next_days"]:
-    #    print("="*40, dayweather["name"], "="*40)
-    #    print("Description:", dayweather["weather"])
-     #   print(f"Température max: {dayweather['max_temp']}°C")
-    #    print(f"Température min: {dayweather['min_temp']}°C")"""
+    data = get_weather_data(URL)
+
+# print data
+    print("Weather for:", data["region"])
+    print("Now:", data["dayhour"])
+    print(f"Temperature now: {data['temp_now']}°C")
+    print("Description:", data['weather_now'])
+    print("Precipitation:", data["precipitation"])
+    print("Humidity:", data["humidity"])
+    print("Wind:", data["wind"])
+    print("Next days:")
+    for dayweather in data["next_days"]:
+        print("="*40, dayweather["name"], "="*40)
+        print("Description:", dayweather["weather"])
+        print(f"Max temperature: {dayweather['max_temp']}°C")
+        print(f"Min temperature: {dayweather['min_temp']}°C")         
