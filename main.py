@@ -3,11 +3,19 @@ import spoti
 import time
 import argparse
 import requests
+import json
 from requests.exceptions import ConnectionError
+
+import os
+os.environ["SPOTIPY_CLIENT_ID"] = "fe89983598724afcbcd7d562104460e6"
+os.environ["SPOTIPY_CLIENT_SECRET"] = "6bf650c749c145a581b6d2b73fc5790c"
 
 doitQuitter = False
 last = 0
 URL = "https://www.google.com/search?lr=lang_en&ie=UTF-8&q=weather"
+testxx = {"Alexander":10, "Michael": [1, 2, "Bonjour"]}
+with open('weather.json', 'w') as f:
+    json.dump(testxx, f)
 
 def execute():
     global last
